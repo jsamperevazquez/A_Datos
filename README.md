@@ -1,6 +1,6 @@
-#Ejercicios Acceso a Datos
+# Ejercicios Acceso a Datos
 
-##Arquivos
+## Arquivos
 NOTAS IMPORTANTES
 
 Unha vez solucionado o exercicio debes enviar o proxecto completo comprimido co nome arquivos.zip
@@ -136,7 +136,7 @@ a sua lonxitude en bytes
 
 10)(opcional) amosa usando o metodo recur(File) todos  os subdirectorios e arquivos que colgan do directorio '/home/oracle/NetBeansProjects/arquivos/arquivosdir/'
 
-##copyBytesTexto
+## CopyBytesTexto
 NOTAS IMPORTANTES
 
 Unha vez solucionado o exercicio debes enviar o proxecto completo comprimido co nome arquivos.zip
@@ -171,7 +171,7 @@ APLICACION :
 
 2_2) Fai a modificacion necesaria na aplicacion anterior para que se engada de novo o texto do ficheiro texto1.txt ao ficheiro texto2.txt ( e dicir facer o cambio necesario para que non o sobreescriba , polo que cada vez que executemos a apliciacion , o ficheiro de texto texto2.txt vera aumentado o seu contido cas tres palabras do texto1.txt de novo) 
 
-##CopyBytesImaxe
+## CopyBytesImaxe
 vai constar de dous exercicios : copybytesimaxe e copybytesimaxe2
 
 unha vez solucionados estes exercicios   debes enviar as fontes .java como arquivos separados.
@@ -216,7 +216,7 @@ una vez que executes o exercicio:
 Notaches a diferenza en velocidade a hora de facer a copia da imaxen con respecto a cando NON usaches as clases BufferedInputStream e BufferedOutputStream ?
 Se non a notas escolle unha imaxe de maior numero de bytes que a proporcionada (foto.jpg) ou executa varias veces o proxecto copybytesimaxe para facer crecer en bytes a imaxe foto2.jpg  e despois usa esta  como orixen de copia neste proxecto (copybytesimaxe2)
 
-##PrimitiveWriteUtf
+## PrimitiveWriteUtf
 Neste exercicio seguiremos traballando os fluxos binarios de datos pero abora tratandoos como soporte de tipos de dato primitivos e valores String
 
 DataOutputStream é unha clase que dispon dunha serie de  métodos  para que partindo  de fluxos binaros de datos  podamos escribir tipos primitivos de datos e valores String
@@ -294,7 +294,7 @@ Podemos comprobar que se intentamos abrir a o ficheiro de texto  text3.txt co ed
 podemos ver o contido do ficheiro de texto en hexadecimal e en codigo ASCII  dende unha terminal con:  hexdump -C nome_ficheiro  ou ben en binario puro : xxd -b nome_ficheiro
 mostrar lonxitude en bytes do ficheiro: wc -c nome_ficheiro
 
-##PrimitiveWriteChars
+## PrimitiveWriteChars
 Neste exercicio seguiremos tratando os fluxos binarios de datos pero agora tratandoos como soporte de tipos de datos primitivos e valores String
 
 DataInputStream dispon dunha serie de  métodos  para que partindo  de fluxos binaros de datos  podamos ler tipos primitivos de datos e valores String
@@ -327,7 +327,7 @@ clase DataOutputStream:
 metodo writeChars(String) -- escribe o String (ocupa 2 bytes por caracter)
 metodo size() aplicado a un obxecto de tipo DataOutputStream devolvenos o que ocupa este en bytes
 
-##PrimitiveUtfChars
+## PrimitiveUtfChars
 Neste exercicio seguiremos tratando os fluxos binarios de datos pero abora tratandoos como soporte de tipos de dato primitivos e valores String
 
 DataInputStream dispon dunha serie de  métodos  para que partindo  de fluxos binaros de datos  podamos ler tipos primitivos de datos e valores String
@@ -370,7 +370,7 @@ Podemos comprobar que se intentamos abrir a o ficheiro de texto   co editor gedi
 debemos usar nano , vi , emacs ou outro editor non grafico  e comprobaremos a forma en que
 foron grabadas as  cadeas.
 
-##ProductsStream
+## ProductsStream
 Crear un novo proxecto denominado productsStream  cunha una clase denominada Product e una clase principal  tal como se describen a continuacion:
 
 a)Clase Product: debe ter tres variables privadas
@@ -406,7 +406,7 @@ cod2 , cravos , 6.0
 
 Metodos usados : cando gardedes os datos no ficheiro produtos.txt utilizar o metodo writeUtf para gardar os datos do codigo e a descripcion , e o metodo writeDouble para gardar o prezo      
 
-##CopyCaracteres 
+## CopyCaracteres 
 
 Imos traballar con fluxos de caracteres para o cal imos seguir a utilizar a clases da xerarquia Writer. 
 
@@ -427,7 +427,7 @@ o libro
 
 o neno 
 
-##CopyCaracteresDos
+## CopyCaracteresDos
 copycaracteres2
 
 BufferedWriter permite crear un buffer usando como argumento calquera obxecto heredadeo da clase Writer como FileWriter. 
@@ -447,7 +447,7 @@ readLine() da   clase BufferedReader.
 
 println(argument) da clase PrintWriter que a sua vez  fara uso de BufferedWriter
 
-##TextoDelimitado
+## TextoDelimitado
 graba nun ficheiro de texto delimitado mediante os metodos print e println da clase PrintWriter ,
 os contidos dos tres arrays seguintes tendo en conta que cada tres elementos que  ocupan
 a mesma posicion nos arrays representan a os campos dun rexistro dunha taboa de produtos,
@@ -491,7 +491,7 @@ Descricion: tachas
 
 Prezo:       5,00 € 
 
-##Aleatorio
+## Aleatorio
 Gardar os contidos dos tres arrays seguintes nun ficheiro aleatorio (creado en modo lectura escritura)  tendo en conta que cada tres elementos que  ocupan a mesma posicion nos arrays representan un codigo unha descricion e un prezo:  
 String[] codes={"p1","p2","p3"};   
 String[] descricion ={"parafusos","cravos ","tachas"};   
@@ -520,7 +520,7 @@ p2
 cravos  
 4
 
-##SerializaciónUno
+## SerializaciónUno
 Crear unha clase chamada mclase que implemente a interfaz serializable  (implements Serializable). Dita clase debe ter tres atributos  :
 unha variable String  (nome)  outra int (numero1) e outra double (numero2)
 
@@ -541,7 +541,7 @@ execucion despois do cambio
 object2: s=ola; i=0; d=2.7E10  
 fin da comprobacion: recuperanse os  datos excepto i por ser transient
 
-##SerializaciónDos
+## SerializaciónDos
 Utilizando  a serializacion de obxectos e partindo do array seguinte:  
 String[] cod={"p1","p2","p3"};  
 String[] desc ={"parafusos","cravos ","tachas"};   
