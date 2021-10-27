@@ -66,4 +66,9 @@ public class Conexion {
         modificar.setString(2,codigo);
         modificar.execute();
     }
+    public void eliminarProducto(String codigo) throws SQLException {
+        PreparedStatement eliminar = conn.prepareStatement("DELETE FROM produtos where codigo = ?");
+        eliminar.setString(1,codigo);
+        eliminar.execute();
+    }
 }
