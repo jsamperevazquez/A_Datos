@@ -15,6 +15,7 @@ public class baseRelacional {
             con.insertarProducto("p3","tachas",3.0F, "03/07/2020");
 
              */
+            con.actualizaPrecio("p2",8.0F);
             con.listaProductos();
         } catch (SQLException e) {
             System.out.println("Error en la conexión" + e.getMessage());

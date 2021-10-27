@@ -48,7 +48,7 @@ public class Conexion {
 
     public void listaProductos() throws SQLException {
         Statement consulta = conn.createStatement(); // Creo un objeto de tipo Statement y le asigno el método createStatement del objeto de conexion
-        ResultSet r = consulta.executeQuery("SELECT * from produtos"); // Creo un objeto de tipo Resultset y le asigno la query que preciso
+        ResultSet r = consulta.executeQuery("SELECT * from produtos order by codigo"); // Creo un objeto de tipo Resultset y le asigno la query que preciso
         int fila = 1;
         while (r.next()) {
             // Recojo los valores de cada columna de la tabla en función de su index:
@@ -59,5 +59,11 @@ public class Conexion {
             System.out.println("Fila " + fila + ": " + codigo + " " + nombre + " " + prezo + " " + fechaCaducidad);
             fila++;
         }
+    }
+    public void actualizaPrecio(String codigo, float prezo) throws SQLException {
+        PreparedStatement modificar = conn.prepareStatement("update produtos set prezo = ? where codigo = ?");
+        modificar.setFloat(1,prezo);
+        modificar.setString(2,codigo);
+        modificar.execute();
     }
 }
