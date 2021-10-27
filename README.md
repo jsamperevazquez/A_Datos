@@ -555,3 +555,92 @@ nota : o  metodo close() do ObjectOutputStream  non mete un null cando se execut
 O que podemos facer e gardar un null xusto antes de lanzar o close(()  deste xeito
 cando lea os obxectos podo preguntar se o obxecto lido e un  null para deter o bucle de lectura.
 (outra cousa que podemos facer e usar o metodo available() para ver canto queda por ler do ficheiro, se non queda nada rematamos e xa esta . pero CUIDADO : o metodo available() da clase ObjectInputStream non devolve o numero de bytes que quedan por ler senon o numero de bytes bloqueados , pero podemos usar o metodo available() da clase File InputStream porque ao fin e ao cabo ObjectInputStream esta  lendo os obxectos serializados  a traves de dita clase.)
+
+# POSTGRES SQL
+
+## BaseRelacionalAPostgres
+
+Tratase de conectar dende java a Postres para efectuar operacions de consulta e manipulacion de datos contra taboas (select,insert,update, delete)
+
+### PARTE 1
+
+- dende o cliente psql lanzar o script produtos.sql como usuario oracle contra a base de datos postgres:
+
+ 'psql postgres'
+
+
+\i *ruta do ficheiro produtos.sql*
+
+
+
+isto creara una taboa chamda productos ca seguinte estructura:
+
+	CODIGO     VARCHAR2(3)  primary key
+	DESCRICION  VARCHAR2(15)
+	PREZO	integer
+	DATAC Date
+
+- Comprobar dende sqlplus que a taboa  foi creada correctamente :
+
+  \d produtos
+
+### PARTE 2  APLICACION baserelacionalA
+
+
+- engadir o  driver de postgres  á libreria do proxecto
+
+- crear un metodo de nome 'conexion'  que devolva un obxecto tipo Connection chamado conn 
+  que se conecte a base de datos postgres meiante o usuario oracle , con password oracle. 
+  O obxecto Connection crease así:  
+            
+  String driver = "jdbc:postgresql:";
+
+  String host = "//localhost:"; // tamen poderia ser una ip como "192.168.1.14"
+
+  String porto = "5432";
+
+  String sid = "postgres";
+
+  String usuario = "oracle";
+
+  String password = "oracle";
+
+  String url = driver + host+ porto + "/" + sid;
+
+  Connection conn = DriverManager.getConnection(url,usuario,password);
+            
+
+
+- Crear un metodo de nome 'insireProduto'  que permita inserir na taboa produtos unha fila pasandolle como parametros o codigo o nome e o prezo e a data de caducidade  dun produto
+
+- Crear un metodo chamdo 'listaProdutos' que amose o contido dos rexistros que hai na base  (debe usarse crearse un resulSet e volcar o contido do mesmo ) 
+
+- Crear un método de nome 'actualizaPre' tal que pasandolle o codigo e prezo dun rexistro actualize o campo  prezo do rexistro  que corresponde a dito  codigo.
+	
+- Crear un método de nome 'eliminaProduto' tal que pasandolle o codigo  dun rexistro elimine o rexistro  que corresponde a dito  codigo.
+
+
+COMPROBACION :
+- inserir varios rexistros na taboa mediante o metodo insireProduto creado anteriormente usando sentencias sql standard   
+os rexistros a  inserir son
+p1 , parafusos, 3, 27/12/2020
+p2 , cravos , 4, 6/4/2020
+p3, tachas, 6, 3/7/2020
+
+- Comprobar dende sqlplus que os rexistros foron creados e que podemos actualizar ou borrar algun deles usando os metodos creados anteriormente. e dicir :
+	
+- ler os rexistros da taboa produtos do usuario hr mediante o metodo listaProdutos() creado anteriormente
+- modifica o rexistro de codigo p2 poñendo o seu prezo ao dobre do que ten actualmente
+- borra o rexistro de codigo p3
+
+
+nota: facer todas as comprobacions que precisedes para asegurarvos que funcionan todos as tarefas mencionadas
+
+
+METODOS  necesarios para desenvolver esta aplicacion:
+
+para inserir , borrar ou modificar datos debemos crea previamente un obxecto Statement mediante o metodo createStatement() do obxecto Connection. Despois  en funcion do que queramos facer escolleremos unha ou outro opcion de entre os seguintesmetodos do obxecto Statement creado anteriormente
+- inserir : metodo executeUpdate("orde_de_insercion_sql")
+- consultar (mediante resulset fordwar_only, read_only (por defecto)): crear un obxecto ResultSet a partir de aplicar o metodo executeQuery("consulta") a o obxecto Statement e recorrelo cun bucle
+- borrar : metodo executeUpdate("orde_de_borrado_sql")
+- modificar: metodo executeUpdate("orde_de_modificacion_sql")
