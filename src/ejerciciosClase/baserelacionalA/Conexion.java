@@ -61,7 +61,7 @@ public class Conexion {
         }
     }
     public void actualizaPrecio(String codigo, float prezo) throws SQLException {
-        PreparedStatement modificar = conn.prepareStatement("update produtos set prezo = ? where codigo = ?");
+        PreparedStatement modificar = conn.prepareStatement("update produtos set prezo = ? * 2 where codigo = ?");
         modificar.setFloat(1,prezo);
         modificar.setString(2,codigo);
         modificar.execute();
