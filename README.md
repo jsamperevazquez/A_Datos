@@ -802,3 +802,22 @@ getLocalName():devolta o nome do elemento actual
 getAttributeValue(posidion_do_atributo_dende_0):  devolta un string con o atributo almacenado no indice especificado 
 
 getElementText() : devolta o valor de un elemento de texto
+
+## XML Ampliado
+
+Debes ampliar o exercicio anterior  de xeito que os datos sexan almacenados nun documento XML chamado totalgraxas.xml cuxo contido será o código e nome de cada plato referido  no ficheiro platoss  xunto co seu contido en graxas totais, 
+
+
+
+o contido do ficheiro xerado totalgraxas.xml deberia ser este: 
+
+    <Platos>
+    <Plato Codigop="p1">
+    <nomep>platocarnico1</nomep>
+    <graxatotal>80</graxatotal>
+    </Plato>
+    <Plato Codigop="p2">
+    <nomep>platocarnico2 </nomep>
+    <graxatotal>160</graxatotal>
+    </Plato>
+    </Platos>
