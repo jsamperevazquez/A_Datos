@@ -7,10 +7,16 @@ import java.sql.Statement;
 
 import ejerciciosClase.baserelacionalA.Conexion;
 
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
 public class Exa15brevep implements Serializable {
 
 
-    public void leerPlatos(Platos plato, File file) throws IOException, ClassNotFoundException, SQLException {
+    public void leerPlatos(Platos plato, File file, File file2) throws IOException, ClassNotFoundException, SQLException, XMLStreamException {
+        XMLOutputFactory out = XMLOutputFactory.newInstance();
+        XMLStreamWriter xml = out.createXMLStreamWriter(new FileWriter(file2));
         Conexion conn = new Conexion();
         plato = null;
         ObjectInputStream inpF = new ObjectInputStream(new FileInputStream(file));
@@ -23,7 +29,15 @@ public class Exa15brevep implements Serializable {
         Statement consulta = conn.conexion().createStatement();
 
         Statement consulta2 = conn.conexion().createStatement();
+        xml.writeStartDocument("1.0");
         while ((plato = (Platos) inpF.readObject()) != null) {
+            xml.writeStartElement("Platos");
+            xml.writeStartElement("Plato");
+            xml.writeAttribute("codigo", plato.getCodigop());
+            xml.writeStartElement("NomeP");
+            xml.writeCharacters(plato.getNomep());
+            xml.writeEndElement();
+
             System.out.println(plato);
             ResultSet r = consulta.executeQuery("SELECT codc,peso from composicion where codp ='" + plato.getCodigop()+ "'" );
             while (r.next()) {
@@ -37,11 +51,17 @@ public class Exa15brevep implements Serializable {
                     grasaTotal += graxaParcial;
                 }
             }
+            xml.writeStartElement("GraxaTotal");
             System.out.println("Grasa total = " + grasaTotal + "\n");
+            xml.writeCharacters(String.valueOf(grasaTotal));
+            xml.writeEndElement();
+            xml.writeEndElement();
+            xml.writeEndElement();
             grasaTotal = 0; // Vuelvo a poner a cero la grasa total para que no sume la primera vuelta
         }
 
         inpF.close();
+        xml.close();
 
     }
 }
