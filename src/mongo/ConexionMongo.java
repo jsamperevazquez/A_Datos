@@ -38,6 +38,6 @@ public class ConexionMongo {
     public void deleteDocu(BasicDBObject campo){
         coleccion.deleteOne(campo);
     }
-
+    public void cerrarConexion(){client.close();}
 }
 

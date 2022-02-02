@@ -23,6 +23,7 @@ public class Principal {
 
         //Realizo auctualización:
         reserva.confirmar("1");
+        reserva.cerrarConexion();
     }
 
 }
