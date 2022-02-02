@@ -30,7 +30,8 @@ public class Reservas extends ConexionMongo implements MetodosMongo {
             , double prezoReserva
             , double confirmado
     ) throws SQLException {
-        Document document = new Document("dni",dni);
+        Document document = new Document("_id",_id);
+        document.append("dni",dni);
         document.append("idvooida",idVooIda);
         document.append("idvoovolta",idVooVolta);
         document.append("prezoreserva",prezoReserva);
@@ -41,16 +42,16 @@ public class Reservas extends ConexionMongo implements MetodosMongo {
         actualizar.setString(1,dni);
         actualizar.execute();
     }
-    public void confirmar(ObjectId objI) throws SQLException {
-        BasicDBObject campo = new BasicDBObject("_id",objI);
+    public void confirmar(String id) throws SQLException {
+        BasicDBObject campo = new BasicDBObject("_id",id);
         BasicDBObject set = new BasicDBObject("$set",new BasicDBObject("confirmado",1.0));
         updateDocu(campo,set);
         Statement consulta = conn.conexion().createStatement();
-        consultarPorId(objI);
+        consultarCampoValor("_id",id);
         ResultSet r = consulta.executeQuery("select sum(prezo) from voos where  voo='" + (int)idVooIda + "' or voo='" + (int)idVooVolta + "'");
         while (r.next()) {
             Double prezo = (double) r.getInt(1);
-            actualizarPorID(id,"prezovoo",prezo);
+            actualizarPorCampo(id,"prezoreserva",prezo);
         }
     }
 
@@ -74,9 +75,8 @@ public class Reservas extends ConexionMongo implements MetodosMongo {
         MongoCursor<Document> cursor = docs.iterator();
         while (cursor.hasNext()){
             Document doc = cursor.next();
-            id = doc.getObjectId("_id");
             dni = doc.getString("dni");
-            idVooIda = doc.getDouble("idvoida");
+            idVooIda = doc.getDouble("idvooida");
             idVooVolta = doc.getDouble("idvoovolta");
         }
     }
@@ -86,4 +86,8 @@ public class Reservas extends ConexionMongo implements MetodosMongo {
         coleccion.updateOne(new BasicDBObject("_id",id),new BasicDBObject("$set",new BasicDBObject(campo,valor)));
     }
 
+    @Override
+    public void actualizarPorCampo(String id,String campo, Object valor) {
+        coleccion.updateOne(new BasicDBObject("_id",id),new BasicDBObject("$set",new BasicDBObject(campo,valor)));
+    }
 }

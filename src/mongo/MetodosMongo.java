@@ -59,4 +59,9 @@ public interface MetodosMongo {
         coleccion.updateOne(new BasicDBObject("_id",id),new BasicDBObject("$inc",new BasicDBObject(campo,valor)));
         */
     }
+    default void actualizarPorCampo(String id,String campo, Object valor){
+         /*
+        coleccion.updateOne(new BasicDBObject("$set",new BasicDBObject(campo,valor)));
+        */
+    }
 }
