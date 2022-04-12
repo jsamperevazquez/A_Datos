@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Aplicacion extends ConexionMongo implements MetodosMongo {
@@ -19,6 +18,7 @@ public class Aplicacion extends ConexionMongo implements MetodosMongo {
     List<Composicion> listaComposicion;
     List<Componente> listaComponente;
     Document documento = new Document();
+
     public void tratarDatos() throws SQLException {
         int grasaTotal = 0;
         int grasaParcial = 0;
@@ -48,8 +48,6 @@ public class Aplicacion extends ConexionMongo implements MetodosMongo {
             System.out.println("La grasa total del plato es: " + grasaTotal);
             insertarEnDocu(documento);
             grasaTotal = 0;
-
         }
-
     }
 }
