@@ -1,9 +1,6 @@
-package pinvasoras1;
-
-import ejerciciosClase.baserelacionalA.Conexion;
+package pinvasoras1Original;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class OdbObject {
     public static void main(String[] args) throws SQLException {
