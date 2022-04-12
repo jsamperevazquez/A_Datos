@@ -2,6 +2,8 @@ package mongo;
 
 import org.bson.types.ObjectId;
 
+import java.sql.SQLException;
+
 public interface MetodosMongo {
     // Método para listar documentos
     default void consultarPorId(ObjectId objectid){
@@ -33,7 +35,7 @@ public interface MetodosMongo {
 
         */
     }
-    default void consultarCampoValor(String campo,Object valor){
+    default void consultarCampoValor(String campo,Object valor) throws SQLException {
         /*
         BasicDBObject condition = new BasicDBObject(campo,valor);
         FindIterable<Document> docs = coleccion.find(condition);
